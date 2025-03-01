@@ -31,7 +31,7 @@ func NewSnowflake() *Snowflake {
 	if err != nil {
 		panic(err)
 	}
-	log.Printf("Machine ID: %d", machineID) // Log machine ID
+	// log.Printf("Machine ID: %d", machineID) // Log machine ID
 
 	s.MachineID = machineID
 	s.Mu = sync.Mutex{}
@@ -66,21 +66,21 @@ func (s *Snowflake) GenerateNewID() (int64, error) {
 		s.Sequence = 0
 	}
 
-	// Unix epoch time in milliseconds. Binary repesentation takes 41 bits
-	bin := fmt.Sprintf("%b", timestamp)
-	log.Printf("epoch now(ms): %d, binary: %s, bits: %d\n", timestamp, bin, len(bin))
+	// // Unix epoch time in milliseconds. Binary repesentation takes 41 bits
+	// bin := fmt.Sprintf("%b", timestamp)
+	// log.Printf("epoch now(ms): %d, binary: %s, bits: %d\n", timestamp, bin, len(bin))
 
-	// machine ID is 10 bits
-	bin = fmt.Sprintf("%b", s.MachineID)
-	log.Printf("machine ID: %d, binary: %s, bits: %d\n", s.MachineID, bin, len(bin))
+	// // machine ID is 10 bits
+	// bin = fmt.Sprintf("%b", s.MachineID)
+	// log.Printf("machine ID: %d, binary: %s, bits: %d\n", s.MachineID, bin, len(bin))
 
-	bin = fmt.Sprintf("%b", s.Sequence)
-	log.Printf("sequence Number: %d, binary: %s, bits: %d\n", s.Sequence, bin, len(bin))
+	// bin = fmt.Sprintf("%b", s.Sequence)
+	// log.Printf("sequence Number: %d, binary: %s, bits: %d\n", s.Sequence, bin, len(bin))
 
 	id := (timestamp << 22) | (int64(s.MachineID) << 12) | int64(s.Sequence)
 
-	bin = fmt.Sprintf("%b", id)
-	log.Printf("id: %d, bin %s, bits: %d\n\n", id, bin, len(bin))
+	// bin = fmt.Sprintf("%b", id)
+	// log.Printf("id: %d, bin %s, bits: %d\n\n", id, bin, len(bin))
 
 	return id, nil
 }

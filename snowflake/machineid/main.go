@@ -21,6 +21,8 @@ func hashIPtoMachineID() (int, error) {
 		return 0, err
 	}
 
+	// log.Printf("IP: %s\n", ip)
+
 	// fast, non-cryptographic hash
 	h := fnv.New32a()
 	h.Write([]byte(ip))
