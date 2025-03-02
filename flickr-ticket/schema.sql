@@ -1,12 +1,9 @@
-CREATE TABLE users_int (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    age INT
+CREATE TABLE `Tickets64` (
+  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `stub` char(1) NOT NULL default '',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `stub` (`stub`)
 );
 
-CREATE TABLE users_uuid (
-    id VARCHAR(36) PRIMARY KEY,
-    age INT
-);
-
--- ON one of the servers execute the following statement 2 times to set ID = 2
+-- Offset for one server is 1 and for other server is 2
 INSERT INTO ticket (stub) VALUES ('a') ON DUPLICATE KEY UPDATE id = id + 1;
